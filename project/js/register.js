@@ -19,8 +19,11 @@ const Register = (e) => {
     })
         .then((response) => {
             response.json()
-            alert("Регистрация успешно завершена")
+            alert("Вы успешно зарегистрировались!")
             if (response.ok) window.location.href = "/project%20(3)/project/"
+        })
+        .catch(() => {
+            alert("Произошла ошибка")
         })
         .then((data) => console.log(data))
 }

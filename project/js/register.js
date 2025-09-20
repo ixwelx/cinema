@@ -20,7 +20,7 @@ const Register = (e) => {
         .then((response) => {
             response.json()
             alert("Регистрация успешно завершена")
-            // if (response.ok) window.location.href = "/project%20(3)/project/"
+            if (response.ok) window.location.href = "/project%20(3)/project/"
         })
         .then((data) => console.log(data))
 }

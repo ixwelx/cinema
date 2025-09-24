@@ -1,18 +1,23 @@
 const params = new URLSearchParams(window.location.search);
+const id = params.get("id");
 
-function setMovies(){
+const setMovies = (movie) => {
     document.querySelector("#title").innerHTML = movie.name
     document.querySelector("#releaseDate").innerHTML = movie.releaseDate
     document.querySelector("#genreList").innerHTML = movie.genres
-    document.querySelector("#rating").innerHTML = movie.rating
-
+    document.querySelector("#ratingBadge").innerHTML = `Рейтинг: ${movie.rating}/5`
+    document.querySelector("#stars").innerHTML = Array.from({
+        length: movie.rating,
+    })
+    document.querySelector("#description").innerHTML = movie.description
+    document.querySelector("#cardImage").src = movie.cardImage
+    document.querySelector(".form-card #infoRelease").innerHTML = movie.releaseDate
+    document.querySelector(".form-card #infoGenres").innerHTML = movie.genres
 }
 
 const getMovie = () => {
-    const id = params.get("id")
-
-    fetch(`https://68c7b9ad5d8d9f514732c30b.mockapi.io/api/v1/movie/${id}`).then(
-        (response) => response.json()
-            .then((data) => console.log(data))
-    )
+    fetch(`https://68c7b9ad5d8d9f514732c30b.mockapi.io/movie/${id}`)
+        .then((response) => response.json())
+        .then((data) => setMovies(data))
 }
+getMovie()
